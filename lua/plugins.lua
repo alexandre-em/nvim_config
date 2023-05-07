@@ -59,6 +59,9 @@ return require('packer').startup(function(use)
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim' 
 
+  -- Git
+  use 'lewis6991/gitsigns.nvim'
+
   --Miscellaneous --
   use {
     'nvim-lualine/lualine.nvim',
