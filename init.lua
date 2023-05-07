@@ -17,6 +17,7 @@ require('lualine').setup {
 
 -- LSP
 require("nvim-surround").setup{}
+require("nvim-autopairs").setup{}
 require("mason").setup({
     ui = {
         icons = {
@@ -27,7 +28,22 @@ require("mason").setup({
     }
 })
 local nvim_lsp = require'lspconfig'
+-- LSPSaga
+local status, saga = pcall(require, "lspsaga")
+if (not status) then return end
 
+saga.setup({
+  ui = {
+    winblend = 10,
+    border = 'rounded',
+    colors = {
+      normal_bg = '#002b36'
+    }
+  },
+  symbol_in_winbar = {
+    enable = false
+  }
+})
 
 -- Theme Configuration
 o.background = 'dark'
@@ -89,4 +105,29 @@ require('telescope').setup{
       }
     }
   }
+}
+
+-- Typescript
+local status, nvim_lsp = pcall(require, "lspconfig")
+if (not status) then return end
+
+local protocol = require('vim.lsp.protocol')
+
+local on_attach = function(client, bufnr)
+  -- format on save
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = vim.api.nvim_create_augroup("Format", { clear = true }),
+      buffer = bufnr,
+      callback = function() vim.lsp.buf.format({ bufnr = bufnr }) end
+    })
+  end
+end
+
+-- TypeScript
+nvim_lsp.tsserver.setup {
+  on_attach = on_attach,
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  single_file_support = true,
+  cmd = { "typescript-language-server", "--stdio" }
 }

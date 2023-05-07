@@ -16,11 +16,16 @@ return require('packer').startup(function(use)
   use 'sainnhe/everforest'
   use 'sainnhe/gruvbox-material'
 
-  -- LSP
+  -- LSP 
+  --    java
   use 'neovim/nvim-lspconfig'
   use "ray-x/lsp_signature.nvim"
   use 'williamboman/mason.nvim'
   use 'mfussenegger/nvim-jdtls'
+  --    typescript
+  use 'jose-elias-alvarez/null-ls.nvim'
+  use 'MunifTanjim/prettier.nvim'
+  use 'glepnir/lspsaga.nvim'
 
   -- DAP
   use 'mfussenegger/nvim-dap'
@@ -41,6 +46,13 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-emoji'
     }
   }
+  use({
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    tag = "v<CurrentMajor>.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!:).
+    run = "make install_jsregexp"
+  })
 
   -- Telescope
   use 'nvim-lua/telescope.nvim'
@@ -53,6 +65,8 @@ return require('packer').startup(function(use)
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
   use 'tpope/vim-commentary' 
+  use 'windwp/nvim-autopairs'
+  use 'bkad/CamelCaseMotion'
   use {
     'kyazdani42/nvim-tree.lua',
     requires = {
@@ -63,9 +77,9 @@ return require('packer').startup(function(use)
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
     end
   })
 

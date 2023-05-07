@@ -25,7 +25,6 @@ cmp.setup {
       {name = 'nvim_lsp'}, 
       {name = 'buffer', keyword_length = 3},
       {name = "luasnip", keyword_length = 2},
-      {name = 'cmp_tabnine', keyword_length = 3},
   },
 
   window = {
