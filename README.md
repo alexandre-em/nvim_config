@@ -12,6 +12,7 @@ First install neovim and all dependencies that will be used to make it functiona
 ```sh
     pacman -Sy neovim gcc ripgrep fd
     pacman -Sy nodejs npm python-pip
+    pacman -Sy git lazygit
     npm i -g npm n
     n latest
     npm i -g neovim

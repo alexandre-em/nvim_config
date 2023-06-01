@@ -22,6 +22,9 @@ key_map("n", "<leader>ct", "<Cmd>TagbarToggle<CR>")
 key_map("n", "<PageUp>", ":bp<CR>")
 key_map("n", "<PageDown>", ":bn<CR>")
 
+-- LazyGit
+key_map("n", "<C-b>", ":LazyGit<CR>")
+
 --LSP
 function P.map_lsp_keys()
 	key_map("n", "<C-]>", ":lua vim.lsp.buf.definition()<CR>")
