@@ -38,7 +38,8 @@ First install the recent version or specific version of Java (must be >= 17)
     pacman -Sy jdk17-openjdk
 ```
 
-Then install the `java-debug` project by cloning the repository where you want it to be installed
+Then install the `java-debug` project by cloning the repository where you want
+it to be installed
 
 ```sh
     git clone https://github.com/microsoft/java-debug
@@ -46,7 +47,8 @@ Then install the `java-debug` project by cloning the repository where you want i
     ./mvnw clean install
 ```
 
-Then download the Lombok library (jar) and save it to `~/.local/share/eclipse` folder (create it if do not exist)
+Then download the Lombok library (jar) and save it to `~/.local/share/eclipse`
+folder (create it if do not exist)
 
 ### Typescript
 
@@ -74,3 +76,16 @@ Open nvim and install all plugins
     #   eslint_d java-debug-adapter java-test jdtls
     #   lua-language-server prettierd typescript-language-server
 ```
+
+## Shortcuts
+
+### Vim
+
+### Tmux
+
+| Key | Description |
+| `ctrl-b + o` | Switch between buffers |
+| `ctrl-b + q + ${i}` | Switch to the `i` buffer |
+| `ctrl-b + %` | Create a vertical buffer |
+| `ctrl-b + "` | Create a horizontal buffer |
+| `ctrl-b + alt-arrow` | Resize the buffer |
