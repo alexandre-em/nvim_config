@@ -20,15 +20,16 @@ vim.opt.termguicolors = true
 require("gitsigns").setup({})
 require("nvim-surround").setup({})
 require("nvim-autopairs").setup({})
+require("todo-comments").setup()
 
 -- Git
 vim.g.lazygit_floating_window_winblend = 0 -- transparency of floating window
 vim.g.lazygit_floating_window_scaling_factor = 0.9 -- scaling factor for floating window
 vim.g.lazygit_floating_window_use_plenary = 0 -- use plenary.nvim to manage floating window if available
 vim.g.lazygit_use_neovim_remote = 1 -- fallback to 0 if neovim-remote is not installed
-vim.g.lazygit_floating_window_border_chars={'╭','─', '╮', '│', '╯','─', '╰', '│'}
+vim.g.lazygit_floating_window_border_chars = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" }
 vim.g.lazygit_use_custom_config_file_path = 0 -- config file path is evaluated if this value is 1
-vim.g.lazygit_config_file_path = '' -- custom config file path
+vim.g.lazygit_config_file_path = "" -- custom config file path
 
 -- LSP
 require("mason").setup({
@@ -112,6 +113,11 @@ require("better_escape").setup({
 -- Telescope
 actions = require("telescope.actions")
 require("telescope").setup({
+	pickers = {
+		find_files = {
+			hidden = true,
+		},
+	},
 	defaults = {
 		layout_strategy = "vertical",
 		mappings = {
@@ -153,11 +159,13 @@ null_ls.setup({
 		null_ls.builtins.formatting.markdownlint,
 		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.goimports,
+		null_ls.builtins.formatting.beautysh,
 		null_ls.builtins.diagnostics.eslint_d.with({
 			diagnostics_format = "[eslint] #{m}\n(#{c})",
 		}),
 		null_ls.builtins.diagnostics.markdownlint,
 		null_ls.builtins.diagnostics.jsonlint,
+		null_ls.builtins.diagnostics.shellcheck,
 	},
 	on_attach = function(client, bufnr)
 		if client.supports_method("textDocument/formatting") then
