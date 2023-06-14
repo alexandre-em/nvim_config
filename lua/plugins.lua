@@ -9,7 +9,7 @@ return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
 	use("max397574/better-escape.nvim")
-	use("akinsho/bufferline.nvim")
+	use({ "akinsho/bufferline.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
 
 	-- Theme
 	use("shaunsingh/nord.nvim")

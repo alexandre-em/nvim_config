@@ -74,13 +74,10 @@ require("bufferline").setup({
 		diagnostics = "nvim_lsp",
 		buffer_close_icon = "×",
 
-		offsets = {
-			{
-				filetype = "NvimTree",
-				text = "File Explorer",
-				highlight = "Directory",
-				separator = true,
-			},
+		hover = {
+			enabled = true,
+			delay = 150,
+			reveal = { "close" },
 		},
 	},
 })
@@ -160,6 +157,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.prettierd,
 		null_ls.builtins.formatting.goimports,
 		null_ls.builtins.formatting.beautysh,
+		null_ls.builtins.formatting.djlint,
 		null_ls.builtins.diagnostics.eslint_d.with({
 			diagnostics_format = "[eslint] #{m}\n(#{c})",
 		}),
