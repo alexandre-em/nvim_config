@@ -8,6 +8,7 @@ require("plugins")
 require("maps")
 require("tree")
 require("completion")
+require("snippet")
 
 require("lualine").setup({
 	options = {
