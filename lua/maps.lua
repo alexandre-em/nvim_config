@@ -32,7 +32,7 @@ function P.map_lsp_keys()
 	key_map("n", "<S-R>", ":lua vim.lsp.buf.references()<CR>")
 	key_map("n", "<S-H>", ":lua vim.lsp.buf.hover()<CR>")
 	key_map("n", "<leader>ca", ":lua vim.lsp.buf.code_action()<CR>")
-	key_map("n", "<leader>nc", ":lua vim.lsp.buf.rename()<CR>")
+	key_map("n", "<leader>rf", ":lua vim.lsp.buf.rename()<CR>")
 	key_map("n", "<leader>fr", ':lua require"telescope.builtin".lsp_references()')
 end
 -- LSP Saga

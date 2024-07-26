@@ -12,7 +12,7 @@ require("snippet")
 
 require("lualine").setup({
 	options = {
-		theme = "ayu_mirage",
+		theme = "gruvbox-material",
 	},
 })
 
@@ -48,6 +48,9 @@ local status, saga = pcall(require, "lspsaga")
 if not status then
 	return
 end
+nvim_lsp.tailwindcss.setup({})
+nvim_lsp.kotlin_language_server.setup({})
+nvim_lsp.gopls.setup({})
 
 saga.setup({
 	ui = {
@@ -64,9 +67,11 @@ saga.setup({
 
 -- Theme Configuration
 o.background = "dark"
-vim.g.gruvbox_material_background = "medium"
-vim.g.gruvbox_material_better_performance = 1
-vim.cmd("colorscheme dracula")
+-- vim.g.gruvbox_material_background = "hard"
+-- vim.g.gruvbox_material_better_performance = 1
+-- vim.cmd("colorscheme dracula")
+-- vim.g.gruvbox_contrast_dark = "hard"
+vim.cmd("colorscheme gruvbox")
 
 -- Bufferline --
 require("bufferline").setup({
@@ -91,6 +96,9 @@ configs.setup({
 	auto_install = true,
 	highlight = { enable = true },
 	indent = { enable = true },
+	autotag = {
+		enable = true,
+	},
 })
 
 -- Indent lines
@@ -159,6 +167,7 @@ null_ls.setup({
 		null_ls.builtins.formatting.goimports,
 		null_ls.builtins.formatting.beautysh,
 		null_ls.builtins.formatting.djlint,
+		null_ls.builtins.formatting.ktlint,
 		null_ls.builtins.diagnostics.eslint_d.with({
 			diagnostics_format = "[eslint] #{m}\n(#{c})",
 		}),
@@ -183,6 +192,49 @@ null_ls.setup({
 vim.api.nvim_create_user_command("DisableLspFormatting", function()
 	vim.api.nvim_clear_autocmds({ group = augroup, buffer = 0 })
 end, { nargs = 0 })
+
+-- DAP
+local dap = require("dap")
+
+dap.adapters.kotlin = {
+	type = "executable",
+	command = "kotlin-debug-adapter",
+	options = { auto_continue_if_many_stopped = false },
+}
+
+dap.configurations.kotlin = {
+	{
+		type = "kotlin",
+		request = "launch",
+		name = "This file",
+		-- may differ, when in doubt, whatever your project structure may be,
+		-- it has to correspond to the class file located at `build/classes/`
+		-- and of course you have to build before you debug
+		mainClass = function()
+			local root = vim.fs.find("src", { path = vim.uv.cwd(), upward = true, stop = vim.env.HOME })[1] or ""
+			local fname = vim.api.nvim_buf_get_name(0)
+			-- src/main/kotlin/websearch/Main.kt -> websearch.MainKt
+			return fname:gsub(root, ""):gsub("main/kotlin/", ""):gsub(".kt", "Kt"):gsub("/", "."):sub(2, -1)
+		end,
+		projectRoot = "${workspaceFolder}",
+		jsonLogFile = "",
+		enableJsonLogging = false,
+	},
+	{
+		-- Use this for unit tests
+		-- First, run
+		-- ./gradlew --info cleanTest test --debug-jvm
+		-- then attach the debugger to it
+		type = "kotlin",
+		request = "attach",
+		name = "Attach to debugging session",
+		port = 5005,
+		args = {},
+		projectRoot = vim.fn.getcwd,
+		hostName = "localhost",
+		timeout = 2000,
+	},
+}
 
 -- Typescript
 local status, nvim_lsp = pcall(require, "lspconfig")

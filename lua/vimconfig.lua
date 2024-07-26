@@ -29,5 +29,6 @@ bo.autoindent = true
 bo.smartindent = true
 o.cursorline = true
 wo.number = true
+wo.relativenumber = true -- relative line number
 wo.signcolumn = "yes"
 wo.colorcolumn = "200"

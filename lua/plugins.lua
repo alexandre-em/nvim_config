@@ -12,10 +12,11 @@ return require("packer").startup(function(use)
 	use({ "akinsho/bufferline.nvim", requires = { "nvim-tree/nvim-web-devicons" } })
 
 	-- Theme
-	use("shaunsingh/nord.nvim")
-	use("sainnhe/everforest")
-	use("sainnhe/gruvbox-material")
+	-- use("shaunsingh/nord.nvim")
+	-- use("sainnhe/everforest")
+	-- use("sainnhe/gruvbox-material")
 	use({ "dracula/vim", as = "dracula" })
+	use("morhetz/gruvbox")
 
 	-- LSP
 	--    java
@@ -54,6 +55,7 @@ return require("packer").startup(function(use)
 		-- install jsregexp (optional!:).
 		run = "make install_jsregexp",
 	})
+	use("windwp/nvim-ts-autotag")
 
 	-- Annotation toolkit
 	use({
