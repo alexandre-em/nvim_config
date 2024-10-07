@@ -82,11 +82,26 @@ Open nvim and install all plugins
 
 ### Vim
 
+#### Nvim Surround
+
+    Old text                    Command         New text
+
+---
+
+    surr*ound_words             ysiw)           (surround_words)
+    *make strings               ys$"            "make strings"
+    [delete ar*ound me!]        ds]             delete around me!
+    remove <b>HTML t*ags</b>    dst             remove HTML tags
+    'change quot*es'            cs'"            "change quotes"
+    <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+    delete(functi*on calls)     dsf             function calls
+
 ### Tmux
 
-| Key | Description |
-| `ctrl-b + o` | Switch between buffers |
-| `ctrl-b + q + ${i}` | Switch to the `i` buffer |
-| `ctrl-b + %` | Create a vertical buffer |
-| `ctrl-b + "` | Create a horizontal buffer |
-| `ctrl-b + alt-arrow` | Resize the buffer |
+| Key                  | Description                |
+| -------------------- | -------------------------- |
+| `ctrl-b + o`         | Switch between buffers     |
+| `ctrl-b + q + ${i}`  | Switch to the `i` buffer   |
+| `ctrl-b + %`         | Create a vertical buffer   |
+| `ctrl-b + "`         | Create a horizontal buffer |
+| `ctrl-b + alt-arrow` | Resize the buffer          |
