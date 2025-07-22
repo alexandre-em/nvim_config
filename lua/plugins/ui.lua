@@ -1,13 +1,25 @@
 return {
   -- theme colorscheme
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  --   lazy = true,
+  --   priority = 1000,
+  --   opts = function()
+  --     return {
+  --       transparent = true,
+  --     }
+  --   end,
+  -- },
   {
-    "ellisonleao/gruvbox.nvim",
-    lazy = true,
+    "maxmx03/solarized.nvim",
+    lazy = false,
     priority = 1000,
-    opts = function()
-      return {
-        transparent = true,
-      }
+    opts = {},
+    config = function(_, opts)
+      vim.o.termguicolors = true
+      vim.o.background = "light"
+      require("solarized").setup(opts)
+      vim.cmd.colorscheme("solarized")
     end,
   },
   -- messages, cmdline and the popupmenu
@@ -76,7 +88,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "gruvbox",
+        theme = "solarized",
       },
     },
   },
